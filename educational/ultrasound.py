@@ -8,8 +8,10 @@ GPIO.setmode(GPIO.BCM)
 TRIG = 23
 ECHO = 24
 SERVO = 17
+checkNext = False
 #τιμες που θα μπορει να παρει το servo
-degrees = [2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.5]
+#degrees = [2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.5]
+degrees = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
 #πινακας με μετρησεις του υπερηχου
 measurements = []
 #η αποσταση που θεωρουμε πως ειναι πολυ κοντα στον υπερηχο
@@ -56,15 +58,20 @@ while True:
     #προσθετουμε τη μετρηση στον πινακα measurements    
     measurements.append(distance)
     #αν η αποσταση απο το αντικειμενο ειναι πολυ μικρη
-    if(distance <= tooClose):
-        print(distance)
+    if(distance <= tooClose or checkNext == True):
         #αν ειμαστε στην 2η επαναληχη και η αποσταση στην πρωτη επαναληψη ηταν μεγαλυτερη απο το οριο
-        if(i == 1 and measurements[0]>tooClose):
+        if(i == 1):
+            if(measurements[0]>tooClose):
                 time.sleep(0.5)
                 #μετακινηση του servo στο διαμερισμο 0
-                pwm.ChangeDutyCycle(degrees[0]) 
+                duty = 2.5 + (degrees[0] / 180.0) * 10  
+                pwm.ChangeDutyCycle(duty) 
                 time.sleep(0.5)                
                 print(measurements[0], i)
+                checkNext = False
+            else:
+                checkNext = True
+        
         #για 3+ επαναληψεις       
         elif(i-2>=0):
                 j=1
@@ -74,9 +81,14 @@ while True:
                         time.sleep(0.5)
                         #πηγαινει το servo στον αντιστοιχο διαμερισμο. ΠΧ αν ειμαστε στη μετρηση 3 θα κοιταξει τις μετρησεις 2 και 1 ο κωδικας
                         #αν η μετρηση 2 εχει αοσταση μεγαλυτερη απο το οριο, τοτε θα παει στο διαμερισμο 2, δηλαδη θα γραψει 3.5 στο servo 
-                        pwm.ChangeDutyCycle(degrees[i-j])
+                        duty = 2.5 + (degrees[i-j] / 180.0) * 10
+                        pwm.ChangeDutyCycle(duty)
                         time.sleep(0.5)
-                        print(measurements[i-j], i, j)                        
+                        print(measurements[i-j], i, j)   
+                        checkNext = False
+                        break
+                    else:
+                        checkNext = True                     
                     j+=1
 
     i+=1  
