@@ -1,7 +1,5 @@
-<h1>MOVED REPOSITORY HERE: https://github.com/ieee-sb-uniwa/lidar-cane</h1>
   <header style="border-bottom:1px solid #e6e6e6; padding-bottom:12px; margin-bottom:20px;">
     <h1 style="font-size:1.6rem; margin:0;">Kana Fotilo: Ραβδί για υποβοηθούμενη κατεύθυνση</h1>
-    <p style="color:#6b7280; margin:6px 0 0 0;">Project της IEEE UNIWA</p>
   </header>
 
   <section style="background:#fbfbff; border:1px solid #eef2ff; padding:16px; border-radius:10px; box-shadow:0 6px 18px rgba(11,103,255,0.04);">
@@ -47,6 +45,6 @@
   </section>
 
   <footer style="border-top:1px solid #e6e6e6; margin-top:22px; padding-top:12px; color:#6b7280; font-size:0.95rem;">
-    <p style="margin:0;">Project της IEEE UniWA, biomed sg. Για περισσοτερες λεπτομέρειες επισκεφτείτε το <a href = "https://github.com/PaulosKapa/kana_fotilo/wiki" target = "_blank">wiki</a></p>
+    <p style="margin:0;">Για περισσοτερες λεπτομέρειες επισκεφτείτε το <a href = "https://github.com/PaulosKapa/kana_fotilo/wiki" target = "_blank">wiki</a></p>
   </footer>
 
